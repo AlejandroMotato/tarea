@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <nav>
+        <ul id="menu">
+            <li><a href="#juan">Juan Hurtado</a></li>
+            <li><a href="#Quiñones">Juan Quiñones</a></li>
+            <li><a href="#Alejandro">Alejandro Motato</a></li>
+        </ul>
+    </nav>
+
+    <div id="integrantes">
+        <div id="juan" class="integrante">
+            <div class="nombre">Juan Hurtado</div>
+            <div class="perfil">Estudiante</div>
+            <div class="experiencia">
+                Experiencia: Aprendiendo desarrollo de aplicaciones web utilizando tecnologías como HTML, CSS, JavaScript
+            </div>
+            <img src="joda.png" alt="Foto de Juan Hurtado">
+            <button onclick="eliminarIntegrante('juan')">Eliminar</button>
+        </div>
+
+        <div id="Quiñones" class="integrante">
+            <div class="nombre">Juan Quiñones</div>
+            <div class="perfil">Estudiante</div>
+            <div class="experiencia">
+                Experiencia: Estudiante en aprendizaje, conocimiento básico en: html, Css, Java y Python
+            </div>
+            <img src="miles.jfif" alt="Foto de Juan Quiñones">
+            <button onclick="eliminarIntegrante('Quiñones')">Eliminar</button>
+        </div>
+
+        <div id="Alejandro" class="integrante">
+            <div class="nombre">Alejandro Motato</div>
+            <div class="perfil">Estudiante</div>
+            <div class="experiencia">
+                Experiencia: Aprendiendo de software, con  un basico conocimiento en lenguajes como Java, Python y C++
+            </div>
+            <img src="kriko.jpg" alt="Foto de Alejandro Motato">
+            <button onclick="eliminarIntegrante('Alejandro')">Eliminar</button>
+        </div>
+    </div>
+
+    <form id="formularioIntegrante">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="perfil">Perfil:</label>
+        <input type="text" id="perfil" name="perfil" required><br>
+
+        <label for="experiencia">Experiencia:</label>
+        <input type="text" id="experiencia" name="experiencia" required><br>
+
+        <label for="imagen">URL de la imagen:</label>
+        <input type="text" id="imagen" name="imagen" required><br>
+
+        <button type="submit">Agregar Integrante</button>
+    </form>
+
+    <script>
+        document.getElementById('formularioIntegrante').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var nombre = document.getElementById('nombre').value;
+            var perfil = document.getElementById('perfil').value;
+            var experiencia = document.getElementById('experiencia').value;
+            var imagen = document.getElementById('imagen').value;
+
+            agregarIntegrante(nombre, perfil, experiencia, imagen);
+
+            this.reset();
+        });
+
+        function agregarIntegrante(nombre, perfil, experiencia, imagen) {
+            var nuevoIntegrante = document.createElement('div');
+            nuevoIntegrante.id = nombre; // Usamos el nombre del integrante como id
+            nuevoIntegrante.className = 'integrante';
+            nuevoIntegrante.innerHTML = `
+                <div class="nombre">${nombre}</div>
+                <div class="perfil">${perfil}</div>
+                <div class="experiencia">Experiencia: ${experiencia}</div>
+                <img src="${imagen}" alt="Foto de ${nombre}">
+                <button onclick="eliminarIntegrante('${nombre}')">Eliminar</button>
+            `;
+            
+            document.getElementById('integrantes').appendChild(nuevoIntegrante);
+
+            // agregamos enlace al menú de navegación
+            var nuevoEnlace = document.createElement('li');
+            var nuevoA = document.createElement('a');
+            nuevoA.href = #${nombre};
+            nuevoA.textContent = nombre;
+            nuevoEnlace.appendChild(nuevoA);
+            document.getElementById('menu').appendChild(nuevoEnlace);
+        }
+
+        function eliminarIntegrante(id) {
+            var integranteAEliminar = document.getElementById(id);
+            integranteAEliminar.remove();
+
+            // eliminamos los enlace del menú de navegación
+            var enlaces = document.querySelectorAll('#menu a');
+            enlaces.forEach(function(enlace) {
+                if (enlace.getAttribute('href') === #${id}) {
+                    enlace.parentNode.remove();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
